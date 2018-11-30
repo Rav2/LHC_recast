@@ -2,14 +2,18 @@
 echo "#--- Start of run_pythia.sh ---#"
 
 wdir=`pwd`
+if [[ $# == 5 ]]; then
+	wdir=$5
+fi
+
 pythia=$PYTHIA_PATH
 input_writer='for_pythia/write_pythia_input.py'
 
 tag=`echo $1 | sed -e "s/\.spcdec//"`
-input_path=$wdir/result/$tag.spcdec
-pythia_setting=$wdir/result/$tag.pythia_input
-hepmc_output=$wdir/result/$tag.hepmc
-pythia_writeout=$wdir/result/$tag.pythia_out
+input_path=$wdir/in_files/$tag.spcdec
+pythia_setting=$wdir/in_files/$tag.pythia_input
+hepmc_output=$wdir/in_files/$tag.hepmc
+pythia_writeout=$wdir/in_files/$tag.pythia_out
 
 mode=$2
 energy=$3
@@ -26,8 +30,8 @@ fi
 
 python $input_writer  $input_path  $mode  $energy  $nev  >  $pythia_setting 
 
-$pythia $pythia_setting $hepmc_output | tee  $pythia_writeout
-ls -ltr $hepmc_output
+#$pythia $pythia_setting $hepmc_output | tee  $pythia_writeout
+#ls -ltr $hepmc_output
 
 echo "#--- End of run_pythia.sh ---#"
 
