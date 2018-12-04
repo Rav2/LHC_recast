@@ -108,9 +108,13 @@ fi
 # fi
 
 #---- Parameter card creation
+filename=$mode'_'$analysis.txt
+filepath=$resdir'/in_files/'$filename
+
 if [[ $event_generator == 'pythia' && $n_mass == 2 ]]; then 
    echo "Card creation"
    python $wdir'/for_checkmate/param_card.py' $resdir'/in_files/'$tag.spcdec  $resdir'/in_files/'$tag.pythia_input $resdir'/output' $tag $analysis $XSfb $nev > $resdir'/in_files/'$tag.dat   
+   echo "$resdir/in_files/$tag.dat" >> $filepath
 fi
 #---- detector simulation 
 #sh run_delphes.sh $tag.hepmc  # > generates $tag.lhco
