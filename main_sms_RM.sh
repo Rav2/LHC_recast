@@ -57,7 +57,7 @@ fi
 
 energy='13'
 lumi='36'
-nev_min='2000'
+nev_min='10000'
 
 #---- calculate decay table
 if [[ $event_generator == 'pythia' ]]; then 
